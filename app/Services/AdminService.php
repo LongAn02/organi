@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Repositories\CategoryRepostory;
+use App\Repositories\DiscountRepository;
 use App\Repositories\OrderDetailRepository;
 use App\Repositories\OrderItemRepository;
 use App\Repositories\ProductRepository;
@@ -15,6 +17,8 @@ class AdminService
     protected $userRepository;
     protected $roleUserRepository;
     protected $productRepository;
+    protected $categoryRepostory;
+    protected $discountRepository;
 
     public function __construct(
         OrderDetailRepository $orderDetailRepository,
@@ -22,12 +26,16 @@ class AdminService
         UserRepository $userRepository,
         RoleUserRepository $roleUserRepository,
         ProductRepository $productRepository,
+        CategoryRepostory $categoryRepostory,
+        DiscountRepository $discountRepository,
     ) {
         $this->orderDetailRepository = $orderDetailRepository;
         $this->orderItemRepository = $orderItemRepository;
         $this->userRepository = $userRepository;
         $this->roleUserRepository = $roleUserRepository;
         $this->productRepository = $productRepository;
+        $this->categoryRepostory = $categoryRepostory;
+        $this->discountRepository = $discountRepository;
     }
 
     public function showOrderDetails() {
@@ -119,5 +127,17 @@ class AdminService
 
     public function deteleProduct($data) {
         return $this->productRepository->deleteProductById($data['id']);
+    }
+
+    public function showProductById ($data) {
+        $products = $this->productRepository->getProductById($data['id']);
+        $categories = $this->categoryRepostory->getAllCategories();
+        $discounts = $this->discountRepository->getDiscount();
+        $view = view('admin.the-poster.modal-update-product')->with([
+            'products' => $products,
+            'categories' => $categories,
+            'discounts' => $discounts
+        ])->render();
+        return $view;
     }
 }

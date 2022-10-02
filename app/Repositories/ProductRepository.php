@@ -40,4 +40,8 @@ class ProductRepository extends BaseRepository
     public function deleteProductById($id) {
         return $this->deleteById($id);
     }
+
+    public function getProductById($id) {
+        return $this->getById($id);
+    }
 }

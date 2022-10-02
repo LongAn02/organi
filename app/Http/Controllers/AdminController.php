@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AddProductRequest;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Models\Discount;
 use App\Repositories\DiscountRepository;
 use App\Services\AdminService;
@@ -130,7 +131,7 @@ class AdminController extends Controller
     public function showProduct() {
         $listProduct = $this->adminService->showProduct();
         return view('admin.the-poster.list-product')->with([
-            'listProduct' => $listProduct
+            'listProduct' => $listProduct,
         ]);
     }
 
@@ -139,5 +140,13 @@ class AdminController extends Controller
         return response()->json([
            'success' => $success
         ]);
+    }
+
+    public function updateProductAdmin(Request $request) {
+        return $this->adminService->showProductById($request->all());
+    }
+
+    public function updateProduct(Request $request) {
+        dd($request->all());
     }
 }

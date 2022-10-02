@@ -33,12 +33,10 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('add-product', [AdminController::class, 'viewAddProduct'])->name('admin.the-poster.view.add-product');
             Route::post('add-product-list', [AdminController::class, 'addProduct'])->name('admin.the-poster.add-product');
 
-            Route::get('update-product', function () {
-                return view('admin.the-poster.update-product');
-            })->name('admin.the-poster.view.update-product');
-
             Route::get('list-product', [AdminController::class, 'showProduct'])->name('admin.the-poster.view.list-product');
             Route::post('delete-product-from-admin', [AdminController::class, 'deleteProductFromListProductAdmin'])->name('admin.the-poster.delete.product');
+            Route::post('update-product-from-admin', [AdminController::class, 'updateProductAdmin'])->name('admin.the-poster.update-admin.product');
+            Route::post('update-product', [AdminController::class, 'updateProduct'])->name('admin.the-poster.update.product');
 
         });
 

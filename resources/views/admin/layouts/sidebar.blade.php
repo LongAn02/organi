@@ -83,7 +83,6 @@
                 <h6 class="collapse-header">The-poster : </h6>
                 <a class="collapse-item" href="{{ route('admin.the-poster.view.post') }}">View Poster</a>
                 <a class="collapse-item" href="{{ route('admin.the-poster.view.add-product') }}">Add Product</a>
-                <a class="collapse-item" href="{{ route('admin.the-poster.view.update-product') }}">Update Product</a>
                 <a class="collapse-item" href="{{ route('admin.the-poster.view.list-product') }}">List Product</a>
             </div>
         </div>
